@@ -1,11 +1,15 @@
-#include <Wire.h>
-#include <LiquidCrystal_I2C.h>
-#include <WString.h>
+#define _LCD_TYPE 1
+#include <LCD_1602_RUS_ALL.h>
+
+//#include <Wire.h>
+//#include <LiquidCrystal_I2C.h>
+//#include <WString.h>
 
 const unsigned int MAX_MESSAGE_LENGTH = 17;
 const unsigned int DELAY_SERIAL_MS = 100;
 
-LiquidCrystal_I2C lcd(0x27,MAX_MESSAGE_LENGTH,2);
+
+LCD_1602_RUS lcd(0x27,MAX_MESSAGE_LENGTH,2);
 
 void display_print(String str1,String str2){
   lcd.clear();
@@ -18,8 +22,8 @@ void display_print(String str1,String str2){
 
 void setup() 
 {
-  String up_str = "Channel:";
-  String down_str = "UNKNOWN";
+  String up_str = "Канал:";
+  String down_str = "НЕВIДОМИЙ";
   lcd.init();
   lcd.backlight();
 
@@ -53,7 +57,7 @@ void loop() {
      message[message_pos] = '\0';
 
      //Print the message (or do other things)     
-     display_print("Channel",message);
+     display_print("Канал:",message);
      delay(DELAY_SERIAL_MS);
      Serial.println(message);
 
